@@ -1,0 +1,24 @@
+@import "@style/variables";
+@import "@style/mixins";
+
+.container {
+  @include flex-column();
+  row-gap: 40px;
+  padding: 60px;
+}
+
+.message {
+  font-size: 60px;
+  color: $text-color-main;
+}
+
+.linkButton {
+  display: block;
+  padding: 5px 8px 6px 8px;
+  border: 2px solid $border-color-main;
+  border-radius: 24px 6px 24px 6px;
+  background-color: $page-bg-color-additional;
+  color: $text-color-additional;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
