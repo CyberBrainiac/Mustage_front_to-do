@@ -1,33 +1,31 @@
-# Template: React + TypeScript + Vite
+# **Тестове завдання на вакансію Junior Full Stack JavaScript Developer**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## **Загальний опис завдання:**
 
-Currently, two official plugins are available:
+Необхідно реалізувати настільний додаток для управління задачами, який буде використовувати API для взаємодії з базою даних. Додаток повинен бути адаптивним і кросплатформеним (працювати на Windows та Mac OS.)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md)
-  uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses
-  [SWC](https://swc.rs/) for Fast Refresh
+Дедлайн: 2 дні з моменту отримання.
 
-## Expanding the ESLint configuration
+## **Вимоги до функціоналу:**
 
-If you are developing a production application, we recommend updating the configuration to enable
-type aware lint rules:
+1. Отримання списку задач з бази даних через API для взаємодії з базою даних та його відображення в інтерфейсі.
 
-- Configure the top-level `parserOptions` property like this:
+2. Створення задачі: користувач повинен мати змогу створювати задачі з заголовком, описом та статусом (виконана / не виконана).
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+3. Редагування задачі: користувач має мати змогу редагувати існуючі задачі, змінювати заголовок, опис та статус.
 
-- Replace `plugin:@typescript-eslint/recommended` to
-  `plugin:@typescript-eslint/recommended-type-checked` or
-  `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add
-  `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+4. Видалення задачі: користувач має мати змогу видаляти задачі.
+
+5. Фільтрація задач: користувач має мати змогу фільтрувати задачі за статусом (виконана / не виконана).
+
+6. Пошук по задачам: користувач має мати змогу виконувати пошук по задачам за заголовком або описом.
+
+Збережіть готовий проект в репозиторії на GitHub і надайте детальні інструкції по його запуску в файлі README.md. Гарний дизайн буде плюсом.
+
+## **Вимоги до стеку технологій:**
+
+Front-End: React.js + Electron.js.
+
+Back-End: Node.js + Nest.js.
+
+БД: PostgreSQL.
