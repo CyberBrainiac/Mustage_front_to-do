@@ -3,7 +3,7 @@
 
 .container {
   color: $text-color-main;
-  font-size: 40px;
+  font-size: 32px;
 }
 
 .content {
@@ -20,4 +20,8 @@
   &:hover {
     background-color: $text-color-additional;
   }
+}
+
+.h1_head {
+  text-align: center;
 }

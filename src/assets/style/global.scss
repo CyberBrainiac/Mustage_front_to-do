@@ -3,14 +3,17 @@
 
 h1 {
   @include headings(70px);
+  margin-top: 24px;
 }
 
 h2 {
   @include headings(50px);
+  margin-top: 18px;
 }
 
 h3 {
   @include headings(40px);
+  margin-top: 16px;
 }
 
 h4 {
@@ -24,4 +27,25 @@ h5 {
 
 h6 {
   @include headings(25px);
+}
+
+ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  padding-left: 1rem;
+
+  li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  /* For nested lists */
+  ul {
+    margin-top: 0.5rem;
+    list-style-type: circle;
+  }
+}
+
+p {
+  @include common-text();
 }

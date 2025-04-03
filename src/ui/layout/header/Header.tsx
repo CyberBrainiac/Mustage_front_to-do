@@ -1,20 +1,27 @@
+import { Link } from "react-router-dom";
 import style from "./header.module.scss";
+import logo from "@img/to-do-list-icon.svg";
+import { FaUserCircle } from "react-icons/fa";
 
 function Header() {
-  function handleClick() {
-    console.log("Click event");
-    return null;
-  }
-
   return (
     <header className={style.container}>
-      <div className={style.blok1}>
-        <div className={style.blok1_item}></div>
+      <Link className={style.logoLink} to="/">
+        <div className={style.logo}>
+          <img src={logo} alt="Logo" />
+        </div>
+      </Link>
+      <nav className={style.nav}>
+        <Link className={style.navItem} to="/about">
+          About
+        </Link>
+        <Link className={style.navItem} to="/userPolicy">
+          UserPolicy
+        </Link>
+      </nav>
+      <div className={style.user}>
+        <FaUserCircle className={style.userIcon} />
       </div>
-      <div className={style.blok2}></div>
-      <div className={style.container_smallGreen}></div>
-      <div className={style.blok3}></div>
-      <button onClick={handleClick}>Click</button>
     </header>
   );
 }

@@ -3,9 +3,12 @@
 
 .container {
   color: $text-color-main;
+  margin-top: auto;
+  border-top: 2px solid $border-color-main;
 }
 
 .content {
+  padding: 10px 0;
   @include flex-row();
 }
 

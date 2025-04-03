@@ -7,20 +7,21 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/template_vite_react_ts/",
+  base: "/",
   server: {
     port: 4200,
   },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src/"),
-      "@pages": path.resolve(__dirname, "./src/"),
+      "@pages": path.resolve(__dirname, "./src/pages/"),
       "@ui": path.resolve(__dirname, "./src/ui/"),
       "@redux": path.resolve(__dirname, "./src/redux/"),
       "@utils": path.resolve(__dirname, "./src/utils/"),
-      "@api": path.resolve(__dirname, "src/api/"),
+      "@axios": path.resolve(__dirname, "src/axios/"),
       "@img": path.resolve(__dirname, "src/assets/img/"),
       "@style": path.resolve(__dirname, "src/assets/style/"),
+      "@interfaces": path.resolve(__dirname, "src/interfaces/"),
     },
   },
   plugins: [react()],

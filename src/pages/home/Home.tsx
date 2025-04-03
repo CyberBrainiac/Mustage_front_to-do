@@ -1,20 +1,12 @@
-import { Link } from "react-router-dom";
+import Counter from "@/ui/Counter";
 import style from "./home.module.scss";
 
 const Home: React.FC = () => {
   return (
     <section className={style.container}>
-      <div className={style.content}>HOME PAGE</div>
-      <div>
-        <Link className={style.button} to="/tools/thematicity-index">
-          Thematicity-index page
-        </Link>
-      </div>
-      <div>
-        <Link className={style.button} to="/tools/unknown">
-          Unknown page
-        </Link>
-      </div>
+      <h1 className={style.h1_head}>Your To Do List</h1>
+      <div className={style.content}></div>
+      <Counter />
     </section>
   );
 };

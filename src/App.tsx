@@ -7,15 +7,17 @@ import {
 import ErrorPage from "./pages/error-page/ErrorPage";
 import RootLayout from "./ui/layout/RootLayout";
 import Home from "./pages/home/Home";
-import ThematicityIndex from "./pages/themat-index/ThematicityIndex";
 import React from "react";
+import UserPolicy from "./pages/userPolicy/UserPolicy";
+import About from "./pages/about/About";
 
 const App: React.FC = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
         <Route index element={<Home />} />
-        <Route path="/tools/thematicity-index" element={<ThematicityIndex />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/userPolicy" element={<UserPolicy />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
     )
