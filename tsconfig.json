@@ -12,6 +12,7 @@
       "@pages/*": ["src/pages/*"],
       "@ui/*": ["src/ui/*"],
       "@redux/*": ["src/redux/*"],
+      "@hooks/*": ["src/hooks/*"],
       "@img/*": ["src/assets/img/*"],
       "@style/*": ["src/assets/style/*"],
       "@utils/*": ["src/utils/*"],
