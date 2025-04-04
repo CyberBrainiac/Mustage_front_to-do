@@ -1,7 +1,7 @@
 import { I_CreateTodo, I_Filters, I_Todo } from "@/interfaces/todoInterfaces";
 import axios from "axios";
 
-const API_BASE_URL = process.env.VUE_APP_API_URL || "http://localhost:4201/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:4201/api";
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
   headers: {
@@ -19,13 +19,13 @@ const api = {
     }
   },
 
-  getTodo: async (id: string, filters: I_Filters): Promise<I_Todo[]> => {
+  getTodo: async (filters: I_Filters): Promise<I_Todo[]> => {
     try {
       const params = new URLSearchParams();
       if (filters.status) params.append("status", filters.status);
       if (filters.searchStr) params.append("search", filters.searchStr);
 
-      const response = await apiClient.get(`/todos/${id}`, { params });
+      const response = await apiClient.get(`/todos`, { params });
       return response.data;
     } catch (error) {
       throw new Error("Failed to fetch todo");

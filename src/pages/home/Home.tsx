@@ -5,15 +5,15 @@ import { I_Todo } from "@/interfaces/todoInterfaces";
 import TodoPopup from "@/ui/todoPopup/TodoPopup";
 import SearchField from "@/ui/search/Search";
 import StatusFilter from "@/ui/filters/StatusFilter";
-import { useAppSelector } from "@/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { getTodoAsync } from "@/redux/thunks/todoThunks";
 
 const Home: React.FC = () => {
-  console.log("render");
-
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState<I_Todo | undefined>(undefined);
   const [isEditMode, setIsEditMode] = useState(false);
   const filters = useAppSelector(state => state.filters);
+  const dispatch = useAppDispatch();
 
   const openCreatePopup = () => {
     setSelectedTodo(undefined);
@@ -32,8 +32,8 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log("Do request");
-  }, [filters]);
+    dispatch(getTodoAsync({ filters }));
+  }, [filters, dispatch]);
 
   return (
     <section className={style.container}>
@@ -53,7 +53,7 @@ const Home: React.FC = () => {
       <TodoPopup
         isOpen={isPopupOpen}
         onClose={closePopup}
-        todoData={selectedTodo}
+        todo={selectedTodo}
         isEditMode={isEditMode}
       />
     </section>

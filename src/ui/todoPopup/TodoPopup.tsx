@@ -1,24 +1,27 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import style from "./todoPopup.module.scss";
 import { I_TodoPopupProps } from "@/interfaces/todoInterfaces";
+import { useAppDispatch } from "@/hooks/redux";
+import { addTodoAsync, deleteTodoAsync, editTodoAsync } from "@/redux/thunks/todoThunks";
 
-const TodoPopup: React.FC<I_TodoPopupProps> = ({ isOpen, onClose, todoData, isEditMode }) => {
+const TodoPopup: React.FC<I_TodoPopupProps> = ({ isOpen, onClose, todo, isEditMode }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [titleError, setTitleError] = useState("");
   const popupRef = useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (todoData && isOpen) {
-      setTitle(todoData.title);
-      setDescription(todoData.description || "");
+    if (todo && isOpen) {
+      setTitle(todo.title);
+      setDescription(todo.description || "");
     } else if (!isEditMode && isOpen) {
       // Reset fields in create mode
       setTitle("");
       setDescription("");
     }
     setTitleError("");
-  }, [todoData, isOpen, isEditMode]);
+  }, [todo, isOpen, isEditMode]);
 
   const handleClickOutside = useCallback(
     (e: MouseEvent) => {
@@ -58,22 +61,29 @@ const TodoPopup: React.FC<I_TodoPopupProps> = ({ isOpen, onClose, todoData, isEd
   };
 
   const handleEdit = () => {
-    if (validateTitle() && validateDescription()) {
-      console.log("Editing todo:", { id: todoData?.id, title, description });
+    if (validateTitle() && validateDescription() && todo) {
+      dispatch(editTodoAsync({ id: todo.id, todo }));
     }
   };
 
   const handleDelete = () => {
-    console.log("Deleting todo:", todoData?.id);
+    console.log("Deleting todo:", todo?.id);
+    if (todo) {
+      dispatch(deleteTodoAsync(todo.id));
+    }
   };
 
   const handleStatusChange = () => {
-    console.log("Changing status for todo:", todoData?.id);
+    console.log("Changing status for todo:", todo?.id);
+    if (validateTitle() && validateDescription() && todo) {
+      const switchStatus = { ...todo, status: !todo.status };
+      dispatch(editTodoAsync({ id: todo.id, todo: switchStatus }));
+    }
   };
 
   const handleCreate = () => {
     if (validateTitle() && validateDescription()) {
-      console.log("Creating new todo:", { title, description });
+      dispatch(addTodoAsync({ title, description }));
     }
   };
 
@@ -115,7 +125,7 @@ const TodoPopup: React.FC<I_TodoPopupProps> = ({ isOpen, onClose, todoData, isEd
             <>
               <button onClick={handleEdit}>Save Changes</button>
               <button onClick={handleStatusChange}>
-                Mark as {todoData?.status ? "Incomplete" : "Complete"}
+                Mark as {todo?.status ? "Incomplete" : "Complete"}
               </button>
               <button style={{ backgroundColor: "#ea7b7b" }} onClick={handleDelete}>
                 Delete Todo

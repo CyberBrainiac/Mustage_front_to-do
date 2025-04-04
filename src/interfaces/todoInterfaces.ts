@@ -23,7 +23,7 @@ export interface I_TodoItem {
 export interface I_TodoPopupProps {
   isOpen: boolean;
   onClose: () => void;
-  todoData?: I_Todo;
+  todo?: I_Todo;
   isEditMode: boolean;
 }
 

@@ -29,10 +29,10 @@ export const addTodoAsync = createAsyncThunk(
 
 export const getTodoAsync = createAsyncThunk(
   "todos/getItem",
-  async ({ id, filters }: { id: string; filters: I_Filters }, { dispatch }) => {
+  async ({ filters }: { filters: I_Filters }, { dispatch }) => {
     try {
       dispatch(setLoading(true));
-      const todos = await api.getTodo(id, filters);
+      const todos = await api.getTodo(filters);
       dispatch(setItems(todos));
       return todos;
     } catch (error) {
