@@ -13,7 +13,7 @@ const TodoItem: React.FC<I_TodoItem> = ({ item, onStatusChange, onDoubleClick })
         <input
           type="checkbox"
           checked={item.status}
-          onChange={() => onStatusChange(item.id)}
+          onChange={() => onStatusChange(item)}
           className={style.checkbox}
         />
         <div>

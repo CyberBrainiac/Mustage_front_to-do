@@ -1,3 +1,5 @@
+import { HttpStatusCode } from "axios";
+
 export interface I_CreateTodo {
   title: string;
   description?: string;
@@ -16,7 +18,7 @@ export interface I_Filters {
 
 export interface I_TodoItem {
   item: I_Todo;
-  onStatusChange: (id: string) => void;
+  onStatusChange: (todo: I_Todo) => void;
   onDoubleClick: (todo: I_Todo) => void;
 }
 
@@ -29,4 +31,10 @@ export interface I_TodoPopupProps {
 
 export interface I_TodoList {
   openEditPopup: (todo: I_Todo) => void;
+}
+
+export interface BaseResponse<T> {
+  success: boolean;
+  data: T;
+  statusCode: HttpStatusCode;
 }

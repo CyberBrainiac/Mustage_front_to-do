@@ -13,7 +13,7 @@ const api = {
   addTodo: async (todo: I_CreateTodo): Promise<I_Todo> => {
     try {
       const response = await apiClient.post("/todos", todo);
-      return response.data;
+      return response.data.data;
     } catch (error) {
       throw new Error("Failed to add todo");
     }
@@ -26,7 +26,7 @@ const api = {
       if (filters.searchStr) params.append("search", filters.searchStr);
 
       const response = await apiClient.get(`/todos`, { params });
-      return response.data;
+      return response.data.data;
     } catch (error) {
       throw new Error("Failed to fetch todo");
     }

@@ -2,7 +2,7 @@ import { I_Filters } from "@/interfaces/todoInterfaces";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: I_Filters = {
-  status: "",
+  status: "2",
   searchStr: "",
 };
 

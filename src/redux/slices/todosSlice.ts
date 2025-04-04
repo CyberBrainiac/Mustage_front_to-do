@@ -1,5 +1,4 @@
 import { I_CreateTodo, I_Todo } from "@/interfaces/todoInterfaces";
-import getTestData from "@/utils/testData";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface TodoState {
@@ -9,7 +8,7 @@ interface TodoState {
 }
 
 const initialState: TodoState = {
-  items: getTestData(),
+  items: [],
   loading: false,
   error: null,
 };

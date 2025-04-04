@@ -17,6 +17,7 @@ export const addTodoAsync = createAsyncThunk(
       dispatch(setLoading(true));
       const newTodo = await api.addTodo(todo);
       dispatch(addItem(newTodo));
+      dispatch(setError(""));
       return newTodo;
     } catch (error) {
       dispatch(setError((error as Error).message));
@@ -34,6 +35,7 @@ export const getTodoAsync = createAsyncThunk(
       dispatch(setLoading(true));
       const todos = await api.getTodo(filters);
       dispatch(setItems(todos));
+      dispatch(setError(""));
       return todos;
     } catch (error) {
       dispatch(setError((error as Error).message));
@@ -51,6 +53,7 @@ export const editTodoAsync = createAsyncThunk(
       dispatch(setLoading(true));
       await api.editTodo(id, todo);
       dispatch(updateItem({ id, todo }));
+      dispatch(setError(""));
     } catch (error) {
       dispatch(setError((error as Error).message));
       throw error;
@@ -67,6 +70,7 @@ export const deleteTodoAsync = createAsyncThunk(
       dispatch(setLoading(true));
       await api.deleteTodo(id);
       dispatch(deleteItem(id));
+      dispatch(setError(""));
     } catch (error) {
       dispatch(setError((error as Error).message));
       throw error;

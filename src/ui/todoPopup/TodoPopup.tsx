@@ -60,30 +60,35 @@ const TodoPopup: React.FC<I_TodoPopupProps> = ({ isOpen, onClose, todo, isEditMo
     return description.length <= 150;
   };
 
-  const handleEdit = () => {
+  const handleEdit = async () => {
     if (validateTitle() && validateDescription() && todo) {
-      dispatch(editTodoAsync({ id: todo.id, todo }));
+      const editTodo = { ...todo, title, description };
+      const res = await dispatch(editTodoAsync({ id: todo.id, todo: editTodo }));
+      if (res.meta.requestStatus === "fulfilled") onClose();
     }
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     console.log("Deleting todo:", todo?.id);
     if (todo) {
-      dispatch(deleteTodoAsync(todo.id));
+      const res = await dispatch(deleteTodoAsync(todo.id));
+      if (res.meta.requestStatus === "fulfilled") onClose();
     }
   };
 
-  const handleStatusChange = () => {
+  const handleStatusChange = async () => {
     console.log("Changing status for todo:", todo?.id);
     if (validateTitle() && validateDescription() && todo) {
       const switchStatus = { ...todo, status: !todo.status };
-      dispatch(editTodoAsync({ id: todo.id, todo: switchStatus }));
+      const res = await dispatch(editTodoAsync({ id: todo.id, todo: switchStatus }));
+      if (res.meta.requestStatus === "fulfilled") onClose();
     }
   };
 
-  const handleCreate = () => {
+  const handleCreate = async () => {
     if (validateTitle() && validateDescription()) {
-      dispatch(addTodoAsync({ title, description }));
+      const res = await dispatch(addTodoAsync({ title, description }));
+      if (res.meta.requestStatus === "fulfilled") onClose();
     }
   };
 
