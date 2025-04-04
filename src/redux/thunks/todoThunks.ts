@@ -1,24 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { addItem, deleteItem, setError, setLoading } from "../slices/todosSlice";
-import { I_CreateTodo, I_Todo } from "@/interfaces/todoInterfaces";
-
-const api = {
-  addTodo: async (todo: I_CreateTodo): Promise<I_Todo> => {
-    const response = await fetch("/api/todos", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(todo),
-    });
-    if (!response.ok) throw new Error("Failed to add todo");
-    return response.json();
-  },
-  deleteTodo: async (id: string): Promise<void> => {
-    const response = await fetch(`/api/todos/${id}`, {
-      method: "DELETE",
-    });
-    if (!response.ok) throw new Error("Failed to delete todo");
-  },
-};
+import {
+  addItem,
+  deleteItem,
+  setError,
+  setItems,
+  setLoading,
+  updateItem,
+} from "../slices/todosSlice";
+import { I_CreateTodo, I_Filters } from "@/interfaces/todoInterfaces";
+import api from "@/axios/api";
 
 export const addTodoAsync = createAsyncThunk(
   "todos/addItem",
@@ -28,6 +18,39 @@ export const addTodoAsync = createAsyncThunk(
       const newTodo = await api.addTodo(todo);
       dispatch(addItem(newTodo));
       return newTodo;
+    } catch (error) {
+      dispatch(setError((error as Error).message));
+      throw error;
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
+export const getTodoAsync = createAsyncThunk(
+  "todos/getItem",
+  async ({ id, filters }: { id: string; filters: I_Filters }, { dispatch }) => {
+    try {
+      dispatch(setLoading(true));
+      const todos = await api.getTodo(id, filters);
+      dispatch(setItems(todos));
+      return todos;
+    } catch (error) {
+      dispatch(setError((error as Error).message));
+      throw error;
+    } finally {
+      dispatch(setLoading(false));
+    }
+  }
+);
+
+export const editTodoAsync = createAsyncThunk(
+  "todos/editItem",
+  async ({ id, todo }: { id: string; todo: I_CreateTodo }, { dispatch }) => {
+    try {
+      dispatch(setLoading(true));
+      await api.editTodo(id, todo);
+      dispatch(updateItem({ id, todo }));
     } catch (error) {
       dispatch(setError((error as Error).message));
       throw error;

@@ -8,7 +8,7 @@ const TodoItem: React.FC<I_TodoItem> = ({ item, onStatusChange, onDoubleClick })
   };
 
   return (
-    <div className={style.todoItem} onDoubleClick={() => onDoubleClick(item.id)}>
+    <div className={style.todoItem} onDoubleClick={() => onDoubleClick(item)}>
       <div className={style.todoContent}>
         <input
           type="checkbox"
@@ -16,9 +16,6 @@ const TodoItem: React.FC<I_TodoItem> = ({ item, onStatusChange, onDoubleClick })
           onChange={() => onStatusChange(item.id)}
           className={style.checkbox}
         />
-          <div className={style.helpButton} title="Double click on todo item to edit">
-            ?
-          </div>
         <div>
           <h3 className={item.status ? `${style.title} ${style.completed}` : style.title}>
             {item.title}

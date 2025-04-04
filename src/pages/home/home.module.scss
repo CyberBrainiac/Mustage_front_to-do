@@ -10,6 +10,24 @@
   @include flex-column();
 }
 
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 18px 0;
+  column-gap: 30px;
+}
+
+@media (max-width: 800px) {
+  .actions {
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 30%;
+    row-gap: 14px;
+  }
+}
+
 .button {
   display: block;
   margin: 8px 8px;
@@ -24,4 +42,32 @@
 
 .h1_head {
   text-align: center;
+}
+
+.addBtn {
+  border: 1px solid $border-color-additional;
+  border-radius: 0.375rem;
+  padding: 1rem;
+  box-shadow: 0 1px 2px $border-color-additional;
+
+  &:hover {
+    background-color: $highlight-main;
+  }
+}
+
+.helpButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 0.375rem;
+  background-color: $border-color-additional;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: help;
+
+  &:hover {
+    background-color: $text-color-additional;
+  }
 }

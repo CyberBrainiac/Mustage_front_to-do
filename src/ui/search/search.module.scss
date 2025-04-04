@@ -1,0 +1,14 @@
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  input {
+    border-radius: 6px;
+    height: 24px;
+  }
+}
+
+.search-field .icon {
+  color: #888;
+}

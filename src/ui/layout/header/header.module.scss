@@ -43,5 +43,9 @@
   &Item {
     @include bold-text(24px);
     list-style-type: none;
+
+    &:hover {
+      color: $highlight-main;
+    }
   }
 }
