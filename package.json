@@ -55,6 +55,7 @@
     "> 0.2%",
     "not dead"
   ],
+  "main": "./electron.js",
   "build": {
     "appId": "com.example.mustage_todo",
     "productName": "mustage_todo",
