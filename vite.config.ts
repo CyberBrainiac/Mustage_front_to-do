@@ -2,7 +2,7 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import autoprefixer from "autoprefixer";
 import crypto from "crypto";
-import getRandom from "./src/utils/getRandom";
+
 import path from "path";
 
 // https://vitejs.dev/config/
@@ -10,9 +10,9 @@ export default ({ mode }: { mode: string }) => {
   const env = loadEnv(mode, process.cwd());
 
   return defineConfig({
-    base: env.VITE_BASE_URL || "/",
+    base: env.VITE_BASE_URL || "./",
     server: {
-      port: parseInt(env.VITE_SERVER_PORT || "4200"),
+      port: parseInt(env.VITE_APP_PORT || "4201"),
     },
     resolve: {
       alias: {
@@ -41,9 +41,17 @@ export default ({ mode }: { mode: string }) => {
             filename.indexOf(".")
           );
           const hash = crypto.createHash("md5").update(css).digest("base64url").substring(0, 2);
-          return `${componentName}__${name}-${hash}${getRandom.numberInRange(10, 100)}`;
+          return `${componentName}__${name}-${hash}${numberInRange(10, 100)}`;
         },
       },
     },
   });
+
+  function numberInRange(start: number, end: number) {
+    const range = end - start;
+    if (range <= 0) {
+      throw new Error('randNumberInRange error: "end" <= "start", range = '.concat(`${range}`));
+    }
+    return Math.floor(Math.random() * (range + 1)) + start;
+  }
 };

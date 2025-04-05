@@ -48,4 +48,12 @@ module.exports = {
     formComponents: ["CustomForm", { name: "Form", formAttribute: "endpoint" }],
     linkComponents: ["Hyperlink", { name: "Link", linkAttribute: "to" }],
   },
+  overrides: [
+    {
+      files: ["electron.js"],
+      env: {
+        node: true, // This tells ESLint that Node.js globals like 'process' are available
+      },
+    },
+  ],
 };
