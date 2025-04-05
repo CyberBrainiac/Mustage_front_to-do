@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite",
     "electron": "electron .",
-    "electrondev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
     "build": "tsc -b && vite build",
-    "dist": "electron-builder",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist": "npm run build && electron-builder",
     "preview": "vite preview --port 8080",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json,scss} --config ./.prettierrc.cjs"
@@ -33,7 +34,6 @@
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "autoprefixer": "^10.4.16",
-    "concurrently": "^9.1.2",
     "electron": "^35.1.4",
     "electron-builder": "^26.0.12",
     "eslint": "^8.50.0",
@@ -55,7 +55,6 @@
     "> 0.2%",
     "not dead"
   ],
-  "main": "electron.js",
   "build": {
     "appId": "com.example.mustage_todo",
     "productName": "mustage_todo",
@@ -66,10 +65,6 @@
       "dist/**/*",
       "electron.js"
     ],
-    "extraResources": {
-      "from": "dist/",
-      "to": "app/dist/"
-    },
     "mac": {
       "target": "dmg",
       "category": "public.app-category.productivity"
@@ -91,15 +86,6 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true
-    },
-    "linux": {
-      "target": [
-        "AppImage",
-        "deb",
-        "tar.gz"
-      ],
-      "category": "Utility",
-      "icon": "build/icons"
     }
   }
 }
