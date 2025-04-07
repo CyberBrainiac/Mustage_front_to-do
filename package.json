@@ -59,12 +59,19 @@
   "build": {
     "appId": "com.example.mustage_todo",
     "productName": "mustage_todo",
-    "directories": {
-      "output": "dist_electron"
-    },
     "files": [
       "dist/**/*",
       "electron.js"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist_electron"
+    },
+    "extraResources": [
+      {
+        "from": "dist",
+        "to": "dist"
+      }
     ],
     "mac": {
       "target": "dmg",

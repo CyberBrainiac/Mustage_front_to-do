@@ -24,7 +24,7 @@ function createWindow() {
     // Port mismatch: your dev script uses Vite's default 5173, but here you use 4201
     startURL = "http://localhost:5173";
   } else {
-    startURL = `file://${join(__dirname, "dist", "index.html")}`;
+    startURL = `file://${join(__dirname, "./dist/index.html")}`;
   }
 
   mainWindow.loadURL(startURL);
